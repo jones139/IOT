@@ -24,7 +24,7 @@ boolean zap(int i) {
     digitalWrite(pinIds[i],0);
     delay(ZAP_MS);
     digitalWrite(pinIds[i],1);
-    //delay(ZAP_MS);
+    delay(ZAP_MS);
     return(1);
   } else {
     Serial.printf("Zapping pin %d out of range", i);
@@ -68,14 +68,14 @@ void onConnectionEstablished()  {
   Serial.println(LED_BUILTIN);
   client.subscribe(MQTT_ZAP_TOPIC, [](const String & payload) {
     Serial.println(payload);
-    if (payload.equals("1")) {
+    if (payload.equals("0")) {
+      zap(0);
+    } else if (payload.equals("1")) {
       zap(1);
     } else if (payload.equals("2")) {
       zap(2);
     } else if (payload.equals("3")) {
       zap(3);
-    } else if (payload.equals("4")) {
-      zap(4);
     } else if (payload.equals("ALL")) {
       zapAll();
     }
