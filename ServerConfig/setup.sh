@@ -27,7 +27,7 @@ for folder in ${CONFIG_LST[@]}; do
 
 done
 
-
+docker compose up -d
 
 
 echo "done!"
