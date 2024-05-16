@@ -1,0 +1,42 @@
+permit_join: true
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://mqtt
+serial:
+  port: /dev/ttyUSB0
+frontend:
+  port: 8080
+advanced:
+  network_key:
+    - 62
+    - 228
+    - 148
+    - 91
+    - 75
+    - 172
+    - 104
+    - 126
+    - 249
+    - 249
+    - 126
+    - 235
+    - 233
+    - 222
+    - 147
+    - 177
+  homeassistant_legacy_entity_attributes: false
+  legacy_api: false
+  legacy_availability_payload: false
+device_options:
+  legacy: false
+devices:
+  '0x00124b002a65b9ca':
+    friendly_name: BreakfastRmTH
+  '0x00124b002a65b296':
+    friendly_name: LivingRmTH
+  '0xa4c138125daede26':
+    friendly_name: BathRm2TH
+  '0xa4c1388cbd008c52':
+    friendly_name: BedRm1TH
+  '0x0cae5ffffeb230e8':
+    friendly_name: CatoZap1Btn
