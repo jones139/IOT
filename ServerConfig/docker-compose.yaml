@@ -15,13 +15,15 @@
 services:
   # mosquitto MQTT Broker
   mqtt:
+    container_name: mosquitto
     image: eclipse-mosquitto:2.0
     restart: unless-stopped
     volumes:
-      - "/home/mosquitto:/mosquitto"
+      - "/home/docker/mosquitto:/mosquitto"
     ports:
       - "1883:1883"
       - "9001:9001"
+    # FIXME:  Introduce authentication later!
     command: "mosquitto -c /mosquitto-no-auth.conf"
 
   # zigbee2mqtt to bridge between the zigbee wireless netowrk and MQTT
@@ -30,12 +32,12 @@ services:
     restart: unless-stopped
     image: koenkk/zigbee2mqtt
     volumes:
-      - /home/zigbe2mqtt:/app/data
+      - /home/docker/zigbe2mqtt:/app/data
       - /run/udev:/run/udev:ro
     ports:
       - 8080:8080
     environment:
-      - TZ=Europe/Berlin
+      - TZ=Europe/London
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
 
@@ -44,7 +46,7 @@ services:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
-      - /home/HomeAssistant:/config
+      - /home/docker/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
