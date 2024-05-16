@@ -18,3 +18,14 @@ The server is intended to fulfil several roles, while minimising power consumpti
   - **CatoCam**:  cctv based cat detector, linked to CatoZap cat deterrer via MQTT.
 
 To make re-configuration on another server easy, I am using Docker to run the various server components in containers, which are easily installed using docker-compose.
+
+## Installation
+
+These installation instructions assume we are starting with a relatively fresh install of Ubuntu linux.
+
+  - Clone this repository: `git clone https://github.com/jones139/IOT.git`
+  - Change directory to the ServerConfig folder: `cd IOT/ServerConfig`
+  - Install Docker:  https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+  - Install Docker-Compose: `apt install docker-compose`
+  - Create the configuration and data folders for the various services:  `cp -rf configDirs/* /home`.   This should create /home/HomeAssistant, /home/mosquitto and /home/zigbee2mqtt
+
