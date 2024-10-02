@@ -1,0 +1,45 @@
+esphome:
+  name: powermeter
+
+esp32:
+  board: esp32cam
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+  level: VERBOSE
+  baud_rate: 115200
+  deassert_rts_dtr: true
+
+
+
+# Enable Home Assistant API
+api:
+  password: "powermeterpasswd"
+
+ota:
+  password: "powermeterpasswd"
+
+wifi:
+  ssid: "ENNISMORE_2"
+  password: "2Da261562d"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "PowerMeterHotspot"
+    password: "powermeterpasswd"
+
+
+switch:
+  - platform: gpio
+    pin:
+      number: 33
+      mode: output
+    id: led
+
+interval:
+  - interval: 2s
+    then:
+      - switch.toggle: led
+      - logger.log: "LED toggling"

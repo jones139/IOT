@@ -67,20 +67,31 @@ switch:
       number: 33
       mode: output
     id: led
+
+binary_sensor:
   - platform: gpio
     pin:
-      number: 15
-      mode: input
+      number: 3
+      mode:
+        input: true
+        pullup: false
+        pulldown: true
     id: Zone1Demand
   - platform: gpio
     pin:
       number: 13
-      mode: input
+      mode:
+        input: true
+        pullup: false
+        pulldown: true
     id: Zone2Demand
   - platform: gpio
     pin:
-      number: 12
-      mode: input
+      number: 16
+      mode:
+        input: true
+        pullup: false
+        pulldown: true
     id: Zone3Demand
 
 interval:
