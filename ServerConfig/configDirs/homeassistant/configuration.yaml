@@ -1,0 +1,98 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+mqtt:
+  sensor:
+    - name: "Outside Temperature"
+      state_topic: "weather1/temp"
+      device_class: "temperature"
+
+    - name: "Outside RH%"
+      state_topic: "weather1/rh"
+      device_class: "humidity"
+
+    - name: "Greenhouse Ambient Temperature"
+      state_topic: "gh/ambient/temp"
+      device_class: "temperature"
+
+    - name: "Greenhouse Soil Temperature"
+      state_topic: "gh/soil/temp"
+      device_class: "temperature"
+
+    - name: "Greenhouse Soil Moisture 1"
+      state_topic: "gh/soil/moist/1"
+      device_class: "humidity"
+
+    - name: "Greenhouse Soil Moisture 2"
+      state_topic: "gh/soil/moist/2"
+      device_class: "humidity"
+
+    - name: "Greenhouse Soil Moisture 3"
+      state_topic: "gh/soil/moist/3"
+      device_class: "humidity"
+
+    - name: "Greenhouse Soil Moisture 4"
+      state_topic: "gh/soil/moist/4"
+      device_class: "humidity"
+
+  binary_sensor:
+    - name: "Greenhouse Watering Status"
+      state_topic: "gh/water/status"
+      payload_on: "1"
+      payload_off: "0"
+
+
+
+  button:
+    - name: "Zap_All"
+      command_topic: "catozap/zap"
+      payload_press: "ALL"
+
+    - name: "Zap_1"
+      command_topic: "catozap/zap"
+      payload_press: "0"
+      
+    - name: "Zap_2"
+      command_topic: "catozap/zap"
+      payload_press: "1"
+      
+    - name: "Zap_3"
+      command_topic: "catozap/zap"
+      payload_press: "2"
+      
+    - name: "Zap_4"
+      command_topic: "catozap/zap"
+      payload_press: "3"
+
+rest:
+  - resource: "http://192.168.0.3:8080/data"
+    sensor:
+      - name: "alarmState"
+        value_template: "{{ value_json.alarmState }}"
+
+      - name: "alarmPhrase"
+        value_template: "{{ value_json.alarmPhrase }}"
+
+      - name: "specPower"
+        value_template: "{{ value_json.specPower }}"
+
+      - name: "roiPower"
+        value_template: "{{ value_json.roiPower }}"
+
+      - name: "alarmThresh"
+        value_template: "{{ value_json.alarmThresh }}"
+
+      - name: "alarmRatioThresh"
+        value_template: "{{ value_json.alarmRatioThresh }}"
+
+
+

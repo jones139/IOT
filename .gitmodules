@@ -1,0 +1,6 @@
+[submodule "catocam"]
+	path = catocam
+	url = https://github.com/jones139/catocam
+[submodule "CatoCam/catocam"]
+	path = CatoCam/catocam
+	url = https://github.com/jones139/catocam
